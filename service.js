@@ -12,7 +12,6 @@ function AddUser(user) {
 exports.AddUser = AddUser
 
 function FindUserById(id) {
-	console.log(id)
 	return Model.User.findById(id)
 }
 exports.FindUserById = FindUserById
