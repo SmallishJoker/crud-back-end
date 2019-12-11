@@ -24,7 +24,10 @@ router.post('/adduser', (req, res) => {
 			}
 		).catch(
 			data => {
-				res.send(data)
+				res.send({
+					status: 500,
+					message: data
+				})
 			}
 		)
 })
@@ -52,6 +55,23 @@ router.post('/updateuser', (req, res) => {
 		).catch(
 			data => {
 				res.send('Server error')
+			}
+		)
+})
+
+router.post('/deleteuser', (req, res) => {
+	Service.DeleteUserById(req.body).then(
+			data => {
+				res.send({
+					status: 'OK',
+					message: 'success'
+				})
+			}
+		).catch(
+			data => {
+				res.send({
+					status: 500
+				})
 			}
 		)
 })
