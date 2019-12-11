@@ -1,9 +1,12 @@
 const Model = require('./model')
 
-function FindAll() {
-	return Model.User.find()
+function QueryUsers(conditions) {
+	if (conditions.name === '') {
+		conditions = {}
+	}
+	return Model.User.find(conditions)
 }
-exports.FindAll = FindAll
+exports.QueryUsers = QueryUsers
 
 function AddUser(user) {
 	return new Promise((resolve, reject) => {

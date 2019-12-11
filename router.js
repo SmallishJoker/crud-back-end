@@ -2,7 +2,7 @@ const router = require('express').Router()
 const Service = require('./service')
 
 router.get('/getuser', (req, res) => {
-	Service.FindAll().then(
+	Service.QueryUsers().then(
 			data => {
 				res.send({
 					status: 'Ok',
@@ -12,7 +12,10 @@ router.get('/getuser', (req, res) => {
 			}
 		).catch(
 			data => {
-				res.send('Server error')
+				res.status(500).send({
+					status: 500,
+					message: 'Server error'
+				})
 			}
 		)
 })
@@ -24,9 +27,9 @@ router.post('/adduser', (req, res) => {
 			}
 		).catch(
 			data => {
-				res.send({
+				res.status(500).send({
 					status: 500,
-					message: data
+					message: 'Server error'
 				})
 			}
 		)
@@ -39,7 +42,10 @@ router.post('/finduserbyid', (req, res) => {
 			}
 		).catch(
 			data => {
-				res.send('Server error')
+				res.status(500).send({
+					status: 500,
+					message: 'Server error'
+				})
 			}
 		)
 })
@@ -54,7 +60,10 @@ router.post('/updateuser', (req, res) => {
 			}
 		).catch(
 			data => {
-				res.send('Server error')
+				res.status(500).send({
+					status: 500,
+					message: 'Server error'
+				})
 			}
 		)
 })
@@ -69,8 +78,28 @@ router.post('/deleteuser', (req, res) => {
 			}
 		).catch(
 			data => {
+				res.status(500).send({
+					status: 500,
+					message: 'Server error'
+				})
+			}
+		)
+})
+
+router.post('/queryuser', (req, res) => {
+	Service.QueryUsers(req.body).then(
+			data => {
 				res.send({
-					status: 500
+					status: 'Ok',
+					message: '响应成功',
+					data: data
+				})
+			}
+		).catch(
+			data => {
+				res.status(500).send({
+					status: 500,
+					message: 'Server error'
 				})
 			}
 		)
