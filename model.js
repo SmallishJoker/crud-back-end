@@ -22,10 +22,6 @@ const userSchema = new Schema({
 	age: {
 		type: Number,
 		required: false
-	},
-	key: {
-		type: Number,
-		required: false
 	}
 }, {
 	versionKey: false
