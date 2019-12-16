@@ -105,4 +105,23 @@ router.post('/queryuser', (req, res) => {
 		)
 })
 
+router.get('/querytopics', (req, res) => {
+	Service.QueryTopics().then(
+			data => {
+				res.send({
+					status: 'OK',
+					message: '成功响应',
+					data: data
+				})
+			}
+		).catch(
+			data => {
+				res.status(500).send({
+					status: 500,
+					message: 'Server error'
+				})
+			}
+		)
+})
+
 module.exports = router

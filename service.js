@@ -1,8 +1,12 @@
 const Model = require('./model')
 
 function QueryUsers(conditions) {
-	if (conditions.name === '') {
+	if (conditions === undefined) {
 		conditions = {}
+	} else {
+		if (conditions.name === '') {
+			conditions = {}
+		}
 	}
 	return Model.User.find(conditions)
 }
@@ -43,3 +47,8 @@ function DeleteUserById(id) {
 	return Model.User.deleteMany({ _id: { $in: id.id }})
 }
 exports.DeleteUserById = DeleteUserById
+
+function QueryTopics() {
+	return Model.Topic.find()
+}
+exports.QueryTopics = QueryTopics

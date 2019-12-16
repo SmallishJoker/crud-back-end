@@ -26,7 +26,40 @@ const userSchema = new Schema({
 }, {
 	versionKey: false
 })
-
-const User = mongoose.model('User', userSchema)
-
+const User = mongoose.model('User', userSchema) // 在此处创建集合User（也就是表User）
 exports.User = User
+
+const topicSchema = new Schema({
+	author: {
+		type: String,
+		required: true
+	},
+	title: {
+		type: String,
+		required: true
+	},
+	article: {
+		type: String,
+		required: true
+	},
+	visit: {
+		type: Number,
+		required: false
+	},
+	like: {
+		type: Number,
+		required: false
+	},
+	messageCount: {
+		type: Number,
+		required: false
+	},
+	date: {
+		type: String,
+		required: true
+	}
+}, {
+	versionKey: false
+})
+const Topic = mongoose.model('Topic', topicSchema)
+exports.Topic = Topic
